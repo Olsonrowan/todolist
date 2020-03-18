@@ -30,7 +30,7 @@ input[type=text] {
     height: 20px;
 }
 
-#btn1{
+#addBtn{
     background-color: rgb(232, 87, 76);
     border-radius: 15px;
     color: white;
@@ -68,4 +68,16 @@ ul li {
   .close:hover {
     background-color: red;
     color: white;
+  }
+
+ .edit {
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin: 13px 50px 13px 50px;
+}
+ul li.checked {
+    background: rgb(45, 42, 41);
+    color: #fff;
+    text-decoration: line-through;
   }

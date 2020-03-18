@@ -56,18 +56,14 @@
 // });
 
 
-var input = document.querySelector("input[type = 'text']");
-var ul = document.querySelector("ul");
-var text = " "
-var list = document.getElementById("list");
-var add = document.getElementById('btn1');
-
 // add.addEventListener('click', function() {
 //   list.innerText += `<li>item</li>`
 // });
 
 
 // input.addEventListener('keypress', function(keyPressed) {
+//   var inputValue = document.querySelector("input[type = 'text']").value;
+
 //     if (keyPressed.which === 13) {
 //         var li = document.createElement('li');
 //          var newTodo = this.value;
@@ -76,58 +72,74 @@ var add = document.getElementById('btn1');
 //     }
 //   });
 
-  var close = document.getElementsByClassName("close");
-var i;
-for (i = 0; i < close.length; i++) {
-  close[i].onclick = function() {
-    var div = this.parentElement;
-    div.style.display = "none";
-  }
-}
 
 
-//this is to add list item
-function myFunction() {
-  var li = document.createElement("li");
-  var inputValue = document.querySelector("input[type = 'text']").value;
-  var t = document.createTextNode(inputValue);
-  li.appendChild(t);
-  if (inputValue === '') {
-    alert("there must be something to do today!");
+var listDetail = document.getElementById("listDetail");
+var addBtn = document.getElementById("addBtn");
+var ul = document.getElementById("ul");
+var cnt = 0
+addBtn.onclick = function() {
+  if (listDetail.value !== "") {
+    var li = document.createElement("LI");
+    ul.appendChild(li);
+
   } else {
-    document.getElementById("list").appendChild(li);
+    alert("List item cannot be empty");
   }
-  document.getElementById("taskText").value = "";
+
+  var entry = document.createElement("SPAN");
+  var entryText = document.createTextNode(listDetail.value);
+  entry.className = "userEntry";
+  entry.setAttribute("id", "entry" + cnt);
+  entry.appendChild(entryText);
+  li.appendChild(entry);
 
   var span = document.createElement("SPAN");
-  var txt = document.createTextNode("\u00D7");  //adding X for close on li
+  var spanText = document.createTextNode("\u00D7");
   span.className = "close";
-  span.appendChild(txt);
+  span.appendChild(spanText);
   li.appendChild(span);
 
-  for (i = 0; i < close.length; i++) {
+  var close = document.getElementsByClassName("close");
+  for (var i = 0; i < close.length; i++) {
     close[i].onclick = function() {
-      var div = this.parentElement;
-      div.style.display = "none";
+      this.parentElement.style.display = "none";
     }
   }
-}
 
-var myNodelist = document.getElementsByTagName("li");
-var i;
-for (i = 0; i < myNodelist.length; i++) {
-  var span = document.createElement("SPAN");
-  var txt = document.createTextNode("\u00D7"); 
-  span.className = "close";
-  span.appendChild(txt);
-  myNodelist[i].appendChild(span);
-}
+  var edit = document.createElement("SPAN");
+  var eText = document.createTextNode("\u270E");
+  edit.className = "edit";
+  edit.setAttribute("id", "edit" + cnt);
+  edit.appendChild(eText);
+  li.appendChild(edit);
 
-var close = document.getElementsByClassName("close");
-var i;
-for (i = 0; i < close.length; i++) {
-  close[i].onclick = function() {
-    var div = this.parentElement;
-    div.style.display = "none";
+  var editC = document.getElementById("edit" + cnt);
+  editC.onclick = function() {
+    var p = prompt("Edit your entry");
+    var obj = document.getElementById("entry" + cnt);
+    obj.innerText = p;
   }
+
+  // var liTag = document.getElementsByTagName("LI");
+
+  // for (var j = 0; j < liTag.length; j++) {
+  //   liTag[j].onclick = function() {
+  //     this.classList.toggle("checked");
+  //   }
+  // }
+
+  var list = document.querySelector('ul');
+  list.addEventListener('click', function(ev) {
+    if (ev.target.tagName === 'LI') {
+      ev.target.classList.toggle('checked');
+    }
+  }, false);
+
+  listDetail.value = "";
 }
+//test//
+
+  
+  
+
