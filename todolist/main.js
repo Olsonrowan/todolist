@@ -94,6 +94,13 @@ addBtn.onclick = function() {
   entry.appendChild(entryText);
   li.appendChild(entry);
 
+  var list = document.querySelector('ul');
+  list.addEventListener('click', function(ev) {
+    if (ev.target.tagName === 'LI') {
+      ev.target.classList.toggle('checked');
+    }
+  }, false);
+
   var span = document.createElement("SPAN");
   var spanText = document.createTextNode("\u00D7");
   span.className = "close";
@@ -129,16 +136,8 @@ addBtn.onclick = function() {
   //   }
   // }
 
-  var list = document.querySelector('ul');
-  list.addEventListener('click', function(ev) {
-    if (ev.target.tagName === 'LI') {
-      ev.target.classList.toggle('checked');
-    }
-  }, false);
-
   listDetail.value = "";
 }
-//test//
 
   
   
