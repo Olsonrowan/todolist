@@ -1,78 +1,3 @@
-// class User {
-//     constructor(lists = []) {
-//         this.lists = lists;
-//     }
-//     addList(list) {
-//         this.lists.push(list);
-//     }
-// }
-
-
-// class ToDoList{
-//     constructor(id, name, toDos = []) {
-//         this.id = id;
-//         this.name = name;
-//         this.toDos = toDos;
-//     }
-
-//     rename(newName) {
-//         this.name = newName;
-    
-//     }
-
-//     addTodo(toDo){
-//         this.toDos.push(toDo);
-
-//     }
-
-//     removeToDo(id) {
-//         this.toDos = this.toDos.filter(toDo => toDo.id != id);
-
-//     }
-// }
-
-// class ToDo {
-//     constructor(id, text){
-//         this.id = id;
-//         this.text = text;
-//         this.completed = false;
-
-//     }
-//     edit(newText){
-//         this.text = newText;
-
-//     }
-//     setCompleted(completed){
-//         this.completed = completed;
-
-//     }
-
-// }
-
-// var listbtn = document.getElementById('btn1');
-// buttonclick.addEventListener('click', function () {
-//     append.li
-
-// });
-
-
-// add.addEventListener('click', function() {
-//   list.innerText += `<li>item</li>`
-// });
-
-
-// input.addEventListener('keypress', function(keyPressed) {
-//   var inputValue = document.querySelector("input[type = 'text']").value;
-
-//     if (keyPressed.which === 13) {
-//         var li = document.createElement('li');
-//          var newTodo = this.value;
-//          this.value = " " ;
-//          ul.appendChild(li).append(newTodo)
-//     }
-//   });
-
-
 
 var listDetail = document.getElementById("listDetail");
 var addBtn = document.getElementById("addBtn");
@@ -84,9 +9,9 @@ addBtn.onclick = function() {
     ul.appendChild(li);
 
   } else {
-    alert("List item cannot be empty");
+    alert("Please enter task");
   }
-
+//close
   var entry = document.createElement("SPAN");
   var entryText = document.createTextNode(listDetail.value);
   entry.className = "userEntry";
@@ -94,15 +19,8 @@ addBtn.onclick = function() {
   entry.appendChild(entryText);
   li.appendChild(entry);
 
-  var list = document.querySelector('ul');
-  list.addEventListener('click', function(ev) {
-    if (ev.target.tagName === 'LI') {
-      ev.target.classList.toggle('checked');
-    }
-  }, false);
-
   var span = document.createElement("SPAN");
-  var spanText = document.createTextNode("\u00D7");
+  var spanText = document.createTextNode("\u00D7"); // X icon
   span.className = "close";
   span.appendChild(spanText);
   li.appendChild(span);
@@ -113,9 +31,9 @@ addBtn.onclick = function() {
       this.parentElement.style.display = "none";
     }
   }
-
+ //adding edit button
   var edit = document.createElement("SPAN");
-  var eText = document.createTextNode("\u270E");
+  var eText = document.createTextNode("\u270E"); //pencil icon
   edit.className = "edit";
   edit.setAttribute("id", "edit" + cnt);
   edit.appendChild(eText);
@@ -123,7 +41,7 @@ addBtn.onclick = function() {
 
   var editC = document.getElementById("edit" + cnt);
   editC.onclick = function() {
-    var p = prompt("Edit your entry");
+    var p = prompt("Edit task");
     var obj = document.getElementById("entry" + cnt);
     obj.innerText = p;
   }
@@ -140,5 +58,11 @@ addBtn.onclick = function() {
 }
 
   
-  
+  // had to move out of function for it to work for some reason
+var list = document.querySelector('ul');
+list.addEventListener('click', function(ev) {
+  if (ev.target.tagName === 'LI') {
+    ev.target.classList.toggle('checked');
+  }
+}, false);
 
